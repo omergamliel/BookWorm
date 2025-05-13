@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, BrowseBooksActivity.class);
             startActivity(intent);
         });
+        BWmylist.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MyList_Activity.class);
+            startActivity(intent);
+        });
 
         };
     }

@@ -35,6 +35,12 @@
             android:layout_marginTop="8dp"
             android:contentDescription="תמונה של הספר"
             android:src="@drawable/book1" />
+        <TextView
+            android:id="@+id/url"
+            android:text="קישור לאתר:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"/>
 
         <Button
             android:id="@+id/addButton"
@@ -42,6 +48,20 @@
             android:layout_height="wrap_content"
             android:text="הוספה לרשימה שלי"
             android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/returnDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="בחר תאריך החזרה"
+            android:clickable="true" />
+        <Button
+            android:id="@+id/reminderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="הגדר תזכורת"
+            android:layout_marginTop="12dp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
