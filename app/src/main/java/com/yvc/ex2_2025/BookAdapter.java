@@ -1,5 +1,6 @@
 package com.yvc.ex2_2025;
 import android.content.Context;
+import android.content.Intent;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,12 @@ public class BookAdapter extends ArrayAdapter<Book> {
             url.setText(book.getUrl());
 
         }
+        addButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context,MyList_Activity.class);
+            intent.putExtra("name",book.getName());
+            intent.putExtra("author",book.getAuthor());
+            context.startActivity(intent);
+        });
 
         return rootView;
     }

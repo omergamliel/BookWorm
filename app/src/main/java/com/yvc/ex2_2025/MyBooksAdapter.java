@@ -62,6 +62,7 @@ public class MyBooksAdapter extends ArrayAdapter<Book> {
 
         }
 
+
         return rootView ;
 
 }}
