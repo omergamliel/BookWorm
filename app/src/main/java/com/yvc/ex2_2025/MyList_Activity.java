@@ -1,25 +1,21 @@
+// File Name: Mylist_Activity.java
+// Students Name: Omer Gamliel | ID: 209052786
+// Students Name: Batel Gofleyzer | ID: 211869409
+// Course Name: 62187 Application Development for Smart Devices
 package com.yvc.ex2_2025;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MyList_Activity extends AppCompatActivity {
-
-
-    ListView Takenbooks_lv;
+    private ListView Takenbooks_lv;
     private ArrayList<Book> mybooks;
-
     private MyBooksAdapter newadapter;
 
 
@@ -30,21 +26,24 @@ public class MyList_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_my_list);
 
         Takenbooks_lv=findViewById(R.id.takenbook_list_view);
-
-        Intent intent =getIntent();
-        String name_added=intent.getStringExtra("name");
-        String author_added=intent.getStringExtra("author");
-
-
-        mybooks = new ArrayList<>();
-        mybooks.add(new Book("book", "noa kirel",LocalDate.of(2000, 10, 26)));
-        mybooks.add(new Book("book2", "noa kirel",LocalDate.of(1984, 06, 15)));
-        mybooks.add(new Book("book3", "noa kirel",LocalDate.of(1999, 04, 20)));
-        mybooks.add(new Book(name_added, author_added,LocalDate.now()));
-
+        mybooks = BrowseBooksActivity.mybooks;
 
         newadapter = new MyBooksAdapter(this, R.layout.book_item, mybooks);
         Takenbooks_lv.setAdapter(newadapter);
+
+        for (Book book : mybooks) {
+            if (book.getReturndate() != null && book.getReturndate().isBefore(LocalDate.now())) {
+                Toast.makeText(this, "זמן ההגשה עבר עבור הספר: " + book.getName(), Toast.LENGTH_LONG).show();
+            }
+        }
+
+
+        Button back_button = findViewById(R.id.back_to_browse_books);
+        back_button.setOnClickListener(v -> {
+            Intent intent = new Intent(MyList_Activity.this, BrowseBooksActivity.class);
+            startActivity(intent);
+        });
+
 
     }
 
